@@ -1,0 +1,43 @@
+<script>
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: { lat: 37.7749, lng: -122.4194 } // Default center to San Francisco
+            });
+                    const stations = [
+                { position: { lat: 37.7749, lng: -122.4194 }, name: "Station 1" },
+                { position: { lat: 37.7849, lng: -122.4294 }, name: "Station 2" },
+                { position: { lat: 37.7949, lng: -122.4394 }, name: "Station 3" }
+            ];
+        
+            stations.forEach(station => {
+                new google.maps.Marker({
+                    position: station.position,
+                    map: map,
+                    title: station.name
+                });
+            });
+        }
+        
+        document.getElementById('find-station').addEventListener('click', () => {
+            document.getElementById('search').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userButton = document.querySelector('.user-button');
+            const userDropdown = document.querySelector('.user-dropdown');
+    
+            userButton.addEventListener('click', () => {
+                userDropdown.classList.toggle('active');
+            });
+                document.addEventListener('click', (event) => {
+                if (!userDropdown.contains(event.target)) {
+                    userDropdown.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
+
